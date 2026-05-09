@@ -4,11 +4,13 @@ on: push
 
 jobs:
   game-of-life-test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         java: ['17', '21', '25']
+        os: [ ubuntu-latest, windows-latest ]
 
     steps:
       - name: Set up Maven

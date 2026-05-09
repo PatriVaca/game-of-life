@@ -6,11 +6,25 @@ jobs:
   game-of-life-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.8.2
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
       - name: Java version
         run: java -version
+      
       - name: Maven version
         run: mvn --version
+      
       - name: Checkout repo
         uses: actions/checkout@v6
+      
       - name: Maven test
         run: mvn test

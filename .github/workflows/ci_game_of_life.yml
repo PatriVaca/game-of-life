@@ -1,23 +1,11 @@
 name: Game of life testing
 
-on: workflow_dispatch
+on: push
 
 jobs:
   game-of-life-test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-     fail-fast: false
-     matrix:
-        java: [  '17' , '21' , '25' ]
-        os: [ ubuntu-latest , windows-latest ]
+    runs-on: ubuntu-latest
     steps:
-      - uses: stCarolas/setup-maven@v5.1
-        with:
-          maven-version: 3.8.2
-      - uses: actions/setup-java@v5
-        with:
-          distribution: 'temurin'
-          java-version: ${{ matrix.java }}
       - name: Java version
         run: java -version
       - name: Maven version
@@ -26,4 +14,3 @@ jobs:
         uses: actions/checkout@v6
       - name: Maven test
         run: mvn test
-
